@@ -24,7 +24,14 @@ struct MainView: View {
                 bottomHeaderView
 
                 Spacer(minLength: 20)
-
+                ScrollView(.vertical, showsIndicators: false) {
+                    
+                    if learnMode {
+                        
+                    } else {
+                        QuoteListView()
+                    }
+                }
 
             }
             .padding()

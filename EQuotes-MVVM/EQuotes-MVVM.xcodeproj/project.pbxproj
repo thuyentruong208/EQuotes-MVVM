@@ -32,6 +32,19 @@
 		7638DAE929F18610004F97A2 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7638DAE829F18610004F97A2 /* FirebaseAnalyticsSwift */; };
 		7638DAEB29F18610004F97A2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7638DAEA29F18610004F97A2 /* FirebaseFirestore */; };
 		7638DAED29F18610004F97A2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7638DAEC29F18610004F97A2 /* FirebaseFirestoreSwift */; };
+		7638DAF029F18713004F97A2 /* QuoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAEF29F18713004F97A2 /* QuoteListView.swift */; };
+		7638DAF129F18713004F97A2 /* QuoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAEF29F18713004F97A2 /* QuoteListView.swift */; };
+		7638DAF329F18720004F97A2 /* QuoteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAF229F18720004F97A2 /* QuoteListViewModel.swift */; };
+		7638DAF429F18720004F97A2 /* QuoteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAF229F18720004F97A2 /* QuoteListViewModel.swift */; };
+		7638DAF829F187F6004F97A2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAF629F187F6004F97A2 /* Logger.swift */; };
+		7638DAF929F187F6004F97A2 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAF629F187F6004F97A2 /* Logger.swift */; };
+		7638DAFA29F187F6004F97A2 /* FileLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAF729F187F6004F97A2 /* FileLogger.swift */; };
+		7638DAFB29F187F6004F97A2 /* FileLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAF729F187F6004F97A2 /* FileLogger.swift */; };
+		7638DAFE29F18826004F97A2 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 7638DAFD29F18826004F97A2 /* Logging */; };
+		7638DB0029F1892D004F97A2 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAFF29F1892D004F97A2 /* Loadable.swift */; };
+		7638DB0129F1892D004F97A2 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAFF29F1892D004F97A2 /* Loadable.swift */; };
+		7638DB0329F18F4D004F97A2 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DB0229F18F4D004F97A2 /* Publisher.swift */; };
+		7638DB0429F18F4D004F97A2 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DB0229F18F4D004F97A2 /* Publisher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +75,12 @@
 		7638DADC29F1854C004F97A2 /* LearnQuote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnQuote.swift; sourceTree = "<group>"; };
 		7638DADF29F18551004F97A2 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		7638DAE229F18557004F97A2 /* Firebase+ModelName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firebase+ModelName.swift"; sourceTree = "<group>"; };
+		7638DAEF29F18713004F97A2 /* QuoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteListView.swift; sourceTree = "<group>"; };
+		7638DAF229F18720004F97A2 /* QuoteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteListViewModel.swift; sourceTree = "<group>"; };
+		7638DAF629F187F6004F97A2 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		7638DAF729F187F6004F97A2 /* FileLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileLogger.swift; sourceTree = "<group>"; };
+		7638DAFF29F1892D004F97A2 /* Loadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
+		7638DB0229F18F4D004F97A2 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +92,7 @@
 				7638DAE729F18610004F97A2 /* FirebaseAnalytics in Frameworks */,
 				7638DAEB29F18610004F97A2 /* FirebaseFirestore in Frameworks */,
 				7638DAED29F18610004F97A2 /* FirebaseFirestoreSwift in Frameworks */,
+				7638DAFE29F18826004F97A2 /* Logging in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				7638DAC529F1722C004F97A2 /* Color.swift */,
+				7638DB0229F18F4D004F97A2 /* Publisher.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -185,6 +206,8 @@
 		7638DAC429F171F2004F97A2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				7638DAFF29F1892D004F97A2 /* Loadable.swift */,
+				7638DAF529F187F6004F97A2 /* Logger */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -193,8 +216,27 @@
 			isa = PBXGroup;
 			children = (
 				7638DAD629F180D7004F97A2 /* MainView.swift */,
+				7638DAEE29F18704004F97A2 /* QuoteList */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		7638DAEE29F18704004F97A2 /* QuoteList */ = {
+			isa = PBXGroup;
+			children = (
+				7638DAEF29F18713004F97A2 /* QuoteListView.swift */,
+				7638DAF229F18720004F97A2 /* QuoteListViewModel.swift */,
+			);
+			path = QuoteList;
+			sourceTree = "<group>";
+		};
+		7638DAF529F187F6004F97A2 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				7638DAF629F187F6004F97A2 /* Logger.swift */,
+				7638DAF729F187F6004F97A2 /* FileLogger.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +260,7 @@
 				7638DAE829F18610004F97A2 /* FirebaseAnalyticsSwift */,
 				7638DAEA29F18610004F97A2 /* FirebaseFirestore */,
 				7638DAEC29F18610004F97A2 /* FirebaseFirestoreSwift */,
+				7638DAFD29F18826004F97A2 /* Logging */,
 			);
 			productName = "EQuotes-MVVM";
 			productReference = 7638DA8829F16966004F97A2 /* EQuotes-MVVM.app */;
@@ -271,6 +314,7 @@
 			mainGroup = 7638DA7F29F16966004F97A2;
 			packageReferences = (
 				7638DAE529F18610004F97A2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7638DAFC29F18826004F97A2 /* XCRemoteSwiftPackageReference "swift-log" */,
 			);
 			productRefGroup = 7638DA8929F16966004F97A2 /* Products */;
 			projectDirPath = "";
@@ -312,11 +356,17 @@
 				7638DA8C29F16966004F97A2 /* EQuotes_MVVMApp.swift in Sources */,
 				7638DADD29F1854C004F97A2 /* LearnQuote.swift in Sources */,
 				7638DACF29F1764F004F97A2 /* AnimatedMenuButton.swift in Sources */,
+				7638DAF329F18720004F97A2 /* QuoteListViewModel.swift in Sources */,
 				7638DADA29F18545004F97A2 /* QuoteItem.swift in Sources */,
 				7638DAC829F173C0004F97A2 /* GradientView.swift in Sources */,
+				7638DB0329F18F4D004F97A2 /* Publisher.swift in Sources */,
 				7638DAE329F18557004F97A2 /* Firebase+ModelName.swift in Sources */,
+				7638DAF829F187F6004F97A2 /* Logger.swift in Sources */,
+				7638DAF029F18713004F97A2 /* QuoteListView.swift in Sources */,
 				7638DAC629F1722C004F97A2 /* Color.swift in Sources */,
 				7638DAE029F18552004F97A2 /* DatabaseManager.swift in Sources */,
+				7638DAFA29F187F6004F97A2 /* FileLogger.swift in Sources */,
+				7638DB0029F1892D004F97A2 /* Loadable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +375,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7638DADB29F18545004F97A2 /* QuoteItem.swift in Sources */,
+				7638DAF929F187F6004F97A2 /* Logger.swift in Sources */,
 				7638DAE429F18557004F97A2 /* Firebase+ModelName.swift in Sources */,
+				7638DAFB29F187F6004F97A2 /* FileLogger.swift in Sources */,
+				7638DB0129F1892D004F97A2 /* Loadable.swift in Sources */,
+				7638DAF129F18713004F97A2 /* QuoteListView.swift in Sources */,
+				7638DB0429F18F4D004F97A2 /* Publisher.swift in Sources */,
+				7638DAF429F18720004F97A2 /* QuoteListViewModel.swift in Sources */,
 				7638DAD029F1764F004F97A2 /* AnimatedMenuButton.swift in Sources */,
 				7638DAD829F180D7004F97A2 /* MainView.swift in Sources */,
 				7638DADE29F1854C004F97A2 /* LearnQuote.swift in Sources */,
@@ -618,6 +674,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		7638DAFC29F18826004F97A2 /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -640,6 +704,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7638DAE529F18610004F97A2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		7638DAFD29F18826004F97A2 /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7638DAFC29F18826004F97A2 /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
