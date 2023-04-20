@@ -16,6 +16,13 @@
 		7638DABA29F16C28004F97A2 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7638DAB929F16C28004F97A2 /* FirebaseAnalyticsSwift */; };
 		7638DABC29F16C29004F97A2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7638DABB29F16C29004F97A2 /* FirebaseFirestore */; };
 		7638DABE29F16C65004F97A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7638DABD29F16C64004F97A2 /* GoogleService-Info.plist */; };
+		7638DAC629F1722C004F97A2 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAC529F1722C004F97A2 /* Color.swift */; };
+		7638DAC829F173C0004F97A2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAC729F173C0004F97A2 /* GradientView.swift */; };
+		7638DAC929F173C0004F97A2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAC729F173C0004F97A2 /* GradientView.swift */; };
+		7638DACF29F1764F004F97A2 /* AnimatedMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DACE29F1764F004F97A2 /* AnimatedMenuButton.swift */; };
+		7638DAD029F1764F004F97A2 /* AnimatedMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DACE29F1764F004F97A2 /* AnimatedMenuButton.swift */; };
+		7638DAD729F180D7004F97A2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAD629F180D7004F97A2 /* MainView.swift */; };
+		7638DAD829F180D7004F97A2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DAD629F180D7004F97A2 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +45,10 @@
 		7638DA9929F16967004F97A2 /* EQuotes-MVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EQuotes-MVVMTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7638DA9D29F16967004F97A2 /* EQuotes_MVVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EQuotes_MVVMTests.swift; sourceTree = "<group>"; };
 		7638DABD29F16C64004F97A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7638DAC529F1722C004F97A2 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		7638DAC729F173C0004F97A2 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		7638DACE29F1764F004F97A2 /* AnimatedMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedMenuButton.swift; sourceTree = "<group>"; };
+		7638DAD629F180D7004F97A2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +93,12 @@
 		7638DA8A29F16966004F97A2 /* EQuotes-MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				7638DAC429F171F2004F97A2 /* Utilities */,
+				7638DABF29F171C9004F97A2 /* Extensions */,
+				7638DAC229F171E2004F97A2 /* Components */,
+				7638DAC329F171E8004F97A2 /* Modules */,
+				7638DAC129F171DD004F97A2 /* Models */,
+				7638DAC029F171D2004F97A2 /* Gateways */,
 				7638DABD29F16C64004F97A2 /* GoogleService-Info.plist */,
 				7638DA8B29F16966004F97A2 /* EQuotes_MVVMApp.swift */,
 				7638DA8D29F16966004F97A2 /* ContentView.swift */,
@@ -106,6 +123,60 @@
 				7638DA9D29F16967004F97A2 /* EQuotes_MVVMTests.swift */,
 			);
 			path = "EQuotes-MVVMTests";
+			sourceTree = "<group>";
+		};
+		7638DABF29F171C9004F97A2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7638DAC529F1722C004F97A2 /* Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7638DAC029F171D2004F97A2 /* Gateways */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Gateways;
+			sourceTree = "<group>";
+		};
+		7638DAC129F171DD004F97A2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7638DAC229F171E2004F97A2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7638DAC729F173C0004F97A2 /* GradientView.swift */,
+				7638DACE29F1764F004F97A2 /* AnimatedMenuButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7638DAC329F171E8004F97A2 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				7638DAD529F180CA004F97A2 /* Main */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		7638DAC429F171F2004F97A2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		7638DAD529F180CA004F97A2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7638DAD629F180D7004F97A2 /* MainView.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,7 +289,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7638DA8E29F16966004F97A2 /* ContentView.swift in Sources */,
+				7638DAD729F180D7004F97A2 /* MainView.swift in Sources */,
 				7638DA8C29F16966004F97A2 /* EQuotes_MVVMApp.swift in Sources */,
+				7638DACF29F1764F004F97A2 /* AnimatedMenuButton.swift in Sources */,
+				7638DAC829F173C0004F97A2 /* GradientView.swift in Sources */,
+				7638DAC629F1722C004F97A2 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +301,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7638DAD029F1764F004F97A2 /* AnimatedMenuButton.swift in Sources */,
+				7638DAD829F180D7004F97A2 /* MainView.swift in Sources */,
+				7638DAC929F173C0004F97A2 /* GradientView.swift in Sources */,
 				7638DA9E29F16967004F97A2 /* EQuotes_MVVMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
