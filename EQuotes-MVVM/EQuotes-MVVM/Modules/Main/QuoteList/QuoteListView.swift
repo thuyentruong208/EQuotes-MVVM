@@ -11,11 +11,13 @@ struct QuoteListView: View {
     @StateObject var vm = QuoteListViewModel(dbManager: RealDatabaseManager())
 
     var body: some View {
-        LazyVStack(alignment: .center, spacing: 20) {
-            ForEach(vm.quotesLoadable.valueOrEmpty) { quoteItem in
-                Text(quoteItem.en)
-            }
+        ScrollView(.vertical, showsIndicators: false) {
+            LazyVStack(alignment: .center, spacing: 20) {
+                ForEach(vm.quotesLoadable.valueOrEmpty) { quoteItem in
+                    QuoteCardView(quoteItem: quoteItem)
+                }
 
+            }
         }
 
     }
@@ -24,5 +26,7 @@ struct QuoteListView: View {
 struct QuoteListView_Previews: PreviewProvider {
     static var previews: some View {
         QuoteListView()
+            .padding()
+            .background(Color.theme.backgroundView)
     }
 }
