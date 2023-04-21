@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @State var showMenu = false
-    @AppStorage("learnMode") private var learnMode = false
+    @AppStorage("learnMode") private var learnMode = true
 
     var body: some View {
         ZStack {
@@ -18,14 +18,14 @@ struct MainView: View {
                 .ignoresSafeArea()
 
             // content
-            VStack {
+            VStack(spacing: 4) {
                 headerView
                 Divider().background(Color.theme.accent)
-                bottomHeaderView
 
-                Spacer(minLength: 20)
+                Spacer(minLength: 0)
 
                 if learnMode {
+                    LearnListView()
 
                 } else {
                     QuoteListView()
@@ -82,19 +82,6 @@ private extension MainView {
             .padding(6)
             .background(Circle().fill(Color.secondTheme.background))
     }
-
-    var bottomHeaderView: some View {
-        VStack {
-            if learnMode {
-                Text("30/20/2023 10:30 PM")
-                    .font(.caption)
-                    .foregroundColor(.theme.accent)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-
-    }
-
 }
 
 struct MainView_Previews: PreviewProvider {

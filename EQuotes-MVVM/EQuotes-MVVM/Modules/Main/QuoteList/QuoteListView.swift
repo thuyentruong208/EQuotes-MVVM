@@ -19,7 +19,6 @@ struct QuoteListView: View {
 
             }
         }
-
     }
 }
 

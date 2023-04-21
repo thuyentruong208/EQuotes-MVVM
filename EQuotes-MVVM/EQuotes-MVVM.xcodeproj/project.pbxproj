@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7607ABAF29F2095700E26A53 /* CardStyleViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607ABAE29F2095700E26A53 /* CardStyleViewModifier.swift */; };
+		7607ABB229F219E600E26A53 /* LearnListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607ABB129F219E600E26A53 /* LearnListView.swift */; };
+		7607ABB429F219F200E26A53 /* LearnListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607ABB329F219F200E26A53 /* LearnListViewModel.swift */; };
 		7638DA8C29F16966004F97A2 /* EQuotes_MVVMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DA8B29F16966004F97A2 /* EQuotes_MVVMApp.swift */; };
 		7638DA8E29F16966004F97A2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DA8D29F16966004F97A2 /* ContentView.swift */; };
 		7638DA9029F16967004F97A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7638DA8F29F16967004F97A2 /* Assets.xcassets */; };
@@ -70,6 +72,8 @@
 
 /* Begin PBXFileReference section */
 		7607ABAE29F2095700E26A53 /* CardStyleViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStyleViewModifier.swift; sourceTree = "<group>"; };
+		7607ABB129F219E600E26A53 /* LearnListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnListView.swift; sourceTree = "<group>"; };
+		7607ABB329F219F200E26A53 /* LearnListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnListViewModel.swift; sourceTree = "<group>"; };
 		7638DA8829F16966004F97A2 /* EQuotes-MVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EQuotes-MVVM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7638DA8B29F16966004F97A2 /* EQuotes_MVVMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EQuotes_MVVMApp.swift; sourceTree = "<group>"; };
 		7638DA8D29F16966004F97A2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -123,6 +127,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7607ABB029F219D500E26A53 /* LearnList */ = {
+			isa = PBXGroup;
+			children = (
+				7607ABB129F219E600E26A53 /* LearnListView.swift */,
+				7607ABB329F219F200E26A53 /* LearnListViewModel.swift */,
+			);
+			path = LearnList;
+			sourceTree = "<group>";
+		};
 		7638DA7F29F16966004F97A2 = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +250,7 @@
 			children = (
 				7638DAD629F180D7004F97A2 /* MainView.swift */,
 				7638DAEE29F18704004F97A2 /* QuoteList */,
+				7607ABB029F219D500E26A53 /* LearnList */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -400,8 +414,10 @@
 				7638DAF029F18713004F97A2 /* QuoteListView.swift in Sources */,
 				7638DAC629F1722C004F97A2 /* Color.swift in Sources */,
 				7638DB0A29F1950C004F97A2 /* MockData.swift in Sources */,
+				7607ABB229F219E600E26A53 /* LearnListView.swift in Sources */,
 				7638DB0729F1944F004F97A2 /* ShowCardView.swift in Sources */,
 				7638DAE029F18552004F97A2 /* DatabaseManager.swift in Sources */,
+				7607ABB429F219F200E26A53 /* LearnListViewModel.swift in Sources */,
 				7638DAFA29F187F6004F97A2 /* FileLogger.swift in Sources */,
 				7638DB0029F1892D004F97A2 /* Loadable.swift in Sources */,
 			);
