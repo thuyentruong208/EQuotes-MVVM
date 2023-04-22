@@ -9,8 +9,9 @@ import SwiftUI
 
 struct MainView: View {
     @State var showMenu = false
-    @AppStorage(LearnDefaults.Keys.learnMode) private var learnMode = true
+    @AppStorage(LearnDefaults.Keys.learnMode) private var learnMode = false
     @AppStorage(LearnDefaults.Keys.todayLearnedCount) private var todayLearnedCount = 0
+    @State var showAddQuoteView = false
 
     var body: some View {
         ZStack {
@@ -64,17 +65,22 @@ private extension MainView {
     var trailingHeaderView: some View {
         HStack(spacing: 16) {
             learnCountView
+            addQuoteButton
+        }
+    }
 
-            if !learnMode {
-                Button {
+    var addQuoteButton: some View {
+        Button {
+            showAddQuoteView.toggle()
 
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.theme.accent)
-                }
-            }
+        } label: {
+            Image(systemName: "plus.circle.fill")
+                .resizable()
+                .frame(width: 30, height: 30)
+                .foregroundColor(.theme.accent)
+        }
+        .sheet(isPresented: $showAddQuoteView) {
+            AddOrUpdateQuoteView(titleScreen: "Add Quote", showFrontCard: true)
         }
     }
 

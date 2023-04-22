@@ -28,8 +28,8 @@ private extension HintCardView {
 
     var hintText: some View {
         VStack {
-            if let askContent = quoteItem.ask, !askContent.isEmpty {
-                Text(askContent)
+            if let hintContent = quoteItem.ask, !hintContent.isEmpty {
+                Text(hintContent)
                     .multilineTextAlignment(.center)
 
             }

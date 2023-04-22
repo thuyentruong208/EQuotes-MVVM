@@ -60,6 +60,14 @@
 		7638DB1329F19AD3004F97A2 /* QuoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DB1229F19AD3004F97A2 /* QuoteCardView.swift */; };
 		7638DB1429F19AD3004F97A2 /* QuoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DB1229F19AD3004F97A2 /* QuoteCardView.swift */; };
 		763A567029F3AC550000FA80 /* LearnQuoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A566F29F3AC550000FA80 /* LearnQuoteCardView.swift */; };
+		763A567329F3AF8D0000FA80 /* AddOrUpdateQuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A567229F3AF8D0000FA80 /* AddOrUpdateQuoteView.swift */; };
+		763A567429F3AF8D0000FA80 /* AddOrUpdateQuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A567229F3AF8D0000FA80 /* AddOrUpdateQuoteView.swift */; };
+		763A567629F3AF950000FA80 /* AddOrUpdateQuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A567529F3AF950000FA80 /* AddOrUpdateQuoteViewModel.swift */; };
+		763A567729F3AF950000FA80 /* AddOrUpdateQuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A567529F3AF950000FA80 /* AddOrUpdateQuoteViewModel.swift */; };
+		763A567929F3B65B0000FA80 /* NewQuoteContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A567829F3B65B0000FA80 /* NewQuoteContent.swift */; };
+		763A567A29F3B65B0000FA80 /* NewQuoteContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A567829F3B65B0000FA80 /* NewQuoteContent.swift */; };
+		763A567F29F3DA210000FA80 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A567E29F3DA210000FA80 /* UIApplication.swift */; };
+		763A568029F3DA210000FA80 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A567E29F3DA210000FA80 /* UIApplication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +114,10 @@
 		7638DB0F29F199E7004F97A2 /* HintCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintCardView.swift; sourceTree = "<group>"; };
 		7638DB1229F19AD3004F97A2 /* QuoteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardView.swift; sourceTree = "<group>"; };
 		763A566F29F3AC550000FA80 /* LearnQuoteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnQuoteCardView.swift; sourceTree = "<group>"; };
+		763A567229F3AF8D0000FA80 /* AddOrUpdateQuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrUpdateQuoteView.swift; sourceTree = "<group>"; };
+		763A567529F3AF950000FA80 /* AddOrUpdateQuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrUpdateQuoteViewModel.swift; sourceTree = "<group>"; };
+		763A567829F3B65B0000FA80 /* NewQuoteContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuoteContent.swift; sourceTree = "<group>"; };
+		763A567E29F3DA210000FA80 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +211,7 @@
 				7638DAC529F1722C004F97A2 /* Color.swift */,
 				7638DB0229F18F4D004F97A2 /* Publisher.swift */,
 				7638DB0C29F19558004F97A2 /* String.swift */,
+				763A567E29F3DA210000FA80 /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -235,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				7638DAD529F180CA004F97A2 /* Main */,
+				763A567129F3AF650000FA80 /* Add or Update Quote */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -288,6 +302,16 @@
 				7607ABAE29F2095700E26A53 /* CardStyleViewModifier.swift */,
 			);
 			path = QuoteCardView;
+			sourceTree = "<group>";
+		};
+		763A567129F3AF650000FA80 /* Add or Update Quote */ = {
+			isa = PBXGroup;
+			children = (
+				763A567229F3AF8D0000FA80 /* AddOrUpdateQuoteView.swift */,
+				763A567529F3AF950000FA80 /* AddOrUpdateQuoteViewModel.swift */,
+				763A567829F3B65B0000FA80 /* NewQuoteContent.swift */,
+			);
+			path = "Add or Update Quote";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,14 +428,17 @@
 			files = (
 				7638DB0D29F19558004F97A2 /* String.swift in Sources */,
 				7638DA8E29F16966004F97A2 /* ContentView.swift in Sources */,
+				763A567629F3AF950000FA80 /* AddOrUpdateQuoteViewModel.swift in Sources */,
 				7638DAD729F180D7004F97A2 /* MainView.swift in Sources */,
 				7607ABAF29F2095700E26A53 /* CardStyleViewModifier.swift in Sources */,
 				7638DB1029F199E7004F97A2 /* HintCardView.swift in Sources */,
 				7638DB1329F19AD3004F97A2 /* QuoteCardView.swift in Sources */,
 				7607ABB629F23D3C00E26A53 /* UserDefaultsWrapper.swift in Sources */,
 				7638DA8C29F16966004F97A2 /* EQuotes_MVVMApp.swift in Sources */,
+				763A567F29F3DA210000FA80 /* UIApplication.swift in Sources */,
 				7638DADD29F1854C004F97A2 /* LearnQuote.swift in Sources */,
 				7638DACF29F1764F004F97A2 /* AnimatedMenuButton.swift in Sources */,
+				763A567329F3AF8D0000FA80 /* AddOrUpdateQuoteView.swift in Sources */,
 				7638DAF329F18720004F97A2 /* QuoteListViewModel.swift in Sources */,
 				7638DADA29F18545004F97A2 /* QuoteItem.swift in Sources */,
 				7638DAC829F173C0004F97A2 /* GradientView.swift in Sources */,
@@ -427,6 +454,7 @@
 				7638DAE029F18552004F97A2 /* DatabaseManager.swift in Sources */,
 				7607ABB429F219F200E26A53 /* LearnListViewModel.swift in Sources */,
 				7638DAFA29F187F6004F97A2 /* FileLogger.swift in Sources */,
+				763A567929F3B65B0000FA80 /* NewQuoteContent.swift in Sources */,
 				7638DB0029F1892D004F97A2 /* Loadable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,11 +463,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				763A568029F3DA210000FA80 /* UIApplication.swift in Sources */,
+				763A567429F3AF8D0000FA80 /* AddOrUpdateQuoteView.swift in Sources */,
 				7638DADB29F18545004F97A2 /* QuoteItem.swift in Sources */,
+				763A567729F3AF950000FA80 /* AddOrUpdateQuoteViewModel.swift in Sources */,
 				7638DB1129F199E7004F97A2 /* HintCardView.swift in Sources */,
 				7638DAF929F187F6004F97A2 /* Logger.swift in Sources */,
 				7638DAE429F18557004F97A2 /* Firebase+ModelName.swift in Sources */,
 				7638DAFB29F187F6004F97A2 /* FileLogger.swift in Sources */,
+				763A567A29F3B65B0000FA80 /* NewQuoteContent.swift in Sources */,
 				7638DB0129F1892D004F97A2 /* Loadable.swift in Sources */,
 				7638DAF129F18713004F97A2 /* QuoteListView.swift in Sources */,
 				7638DB0429F18F4D004F97A2 /* Publisher.swift in Sources */,

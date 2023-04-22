@@ -11,15 +11,25 @@ struct QuoteCardView: View {
 
     let quoteItem: QuoteItem
     @State var showFrontCard = false
+    @State var showEditQuoteView = false
+
+    init(for quoteItem: QuoteItem, showFrontCard: Bool) {
+        self.quoteItem = quoteItem
+        self._showFrontCard = State(initialValue: showFrontCard)
+    }
 
     var body: some View {
         ZStack {
-            if showFrontCard {
-                ShowCardView(quoteItem: quoteItem)
-                    
-            } else {
-                HintCardView(quoteItem: quoteItem)
-                    
+            VStack {
+                updateButton
+
+                if showFrontCard {
+                    ShowCardView(quoteItem: quoteItem)
+
+                } else {
+                    HintCardView(quoteItem: quoteItem)
+
+                }
             }
         }
         .frame(maxWidth: 500)
@@ -32,9 +42,31 @@ struct QuoteCardView: View {
     }
 }
 
+private extension QuoteCardView {
+    var updateButton: some View {
+        Button {
+            showEditQuoteView.toggle()
+        } label: {
+            Image(systemName: "square.and.pencil.circle")
+                .resizable()
+                .frame(width: 30, height: 30)
+                .foregroundColor(Color.white)
+
+        }
+        .sheet(isPresented: $showEditQuoteView) {
+            AddOrUpdateQuoteView(
+                titleScreen: "Update Quote",
+                showFrontCard: showFrontCard,
+                newQuoteContent: NewQuoteContent(quoteItem: quoteItem)
+            )
+        }
+    }
+
+}
+
 struct QuoteCardView_Previews: PreviewProvider {
     static var previews: some View {
-        QuoteCardView(quoteItem: MockData.quoteItem)
+        QuoteCardView(for: MockData.quoteItem, showFrontCard: true)
             .padding()
             .background(Color.black)
             .previewLayout(.sizeThatFits)

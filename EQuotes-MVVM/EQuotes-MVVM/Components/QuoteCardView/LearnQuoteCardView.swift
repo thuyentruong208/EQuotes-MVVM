@@ -13,7 +13,7 @@ struct LearnQuoteCardView: View {
     let quoteItem: QuoteItem
 
     var body: some View {
-        QuoteCardView(quoteItem: quoteItem)
+        QuoteCardView(for: quoteItem, showFrontCard: false)
             .offset(x: xOffset)
             .gesture(DragGesture(minimumDistance: 10, coordinateSpace: .local)
                 .onEnded({ value in

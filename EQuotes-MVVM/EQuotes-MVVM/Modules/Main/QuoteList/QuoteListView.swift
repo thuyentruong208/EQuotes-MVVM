@@ -14,7 +14,7 @@ struct QuoteListView: View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(alignment: .center, spacing: 20) {
                 ForEach(vm.quotesLoadable.valueOrEmpty) { quoteItem in
-                    QuoteCardView(quoteItem: quoteItem)
+                    QuoteCardView(for: quoteItem, showFrontCard: true)
                 }
 
             }
