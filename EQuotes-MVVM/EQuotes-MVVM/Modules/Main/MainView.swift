@@ -9,7 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     @State var showMenu = false
-    @AppStorage("learnMode") private var learnMode = true
+    @AppStorage(LearnDefaults.Keys.learnMode) private var learnMode = true
+    @AppStorage(LearnDefaults.Keys.todayLearnedCount) private var todayLearnedCount = 0
 
     var body: some View {
         ZStack {
@@ -34,6 +35,8 @@ struct MainView: View {
             }
             .padding()
         }
+        .ignoresSafeArea(.all, edges: .bottom)
+
     }
 }
 
@@ -76,7 +79,7 @@ private extension MainView {
     }
 
     var learnCountView: some View {
-        Text("30")
+        Text("\(todayLearnedCount)")
             .foregroundColor(.secondTheme.accent)
             .font(.subheadline)
             .padding(6)

@@ -16,6 +16,7 @@ struct HintCardView: View {
             hintText
             hintImagesView
         }
+        .frame(maxWidth: .infinity)
         .modifier(CardStyleViewModifier(
             backgroundColor: .theme.hintCardBackground,
             accent: .theme.hintCardAccent)

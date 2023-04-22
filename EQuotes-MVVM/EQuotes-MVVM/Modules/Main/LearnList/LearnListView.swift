@@ -15,13 +15,16 @@ struct LearnListView: View {
             infoHeaderView
 
             ScrollView(.vertical, showsIndicators: false) {
-
                 LazyVStack(alignment: .center, spacing: 20) {
                     ForEach(vm.learnQuotesLoadable.valueOrEmpty) { quoteItem in
-                        QuoteCardView(quoteItem: quoteItem)
+                        LearnQuoteCardView(quoteItem: quoteItem)
+                            .environmentObject(vm)
+                            
                     }
 
                 }
+
+                Spacer(minLength: 20)
             }
         }
     }

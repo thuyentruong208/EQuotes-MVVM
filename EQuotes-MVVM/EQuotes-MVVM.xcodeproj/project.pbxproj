@@ -10,6 +10,7 @@
 		7607ABAF29F2095700E26A53 /* CardStyleViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607ABAE29F2095700E26A53 /* CardStyleViewModifier.swift */; };
 		7607ABB229F219E600E26A53 /* LearnListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607ABB129F219E600E26A53 /* LearnListView.swift */; };
 		7607ABB429F219F200E26A53 /* LearnListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607ABB329F219F200E26A53 /* LearnListViewModel.swift */; };
+		7607ABB629F23D3C00E26A53 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607ABB529F23D3C00E26A53 /* UserDefaultsWrapper.swift */; };
 		7638DA8C29F16966004F97A2 /* EQuotes_MVVMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DA8B29F16966004F97A2 /* EQuotes_MVVMApp.swift */; };
 		7638DA8E29F16966004F97A2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DA8D29F16966004F97A2 /* ContentView.swift */; };
 		7638DA9029F16967004F97A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7638DA8F29F16967004F97A2 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		7638DB1129F199E7004F97A2 /* HintCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DB0F29F199E7004F97A2 /* HintCardView.swift */; };
 		7638DB1329F19AD3004F97A2 /* QuoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DB1229F19AD3004F97A2 /* QuoteCardView.swift */; };
 		7638DB1429F19AD3004F97A2 /* QuoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7638DB1229F19AD3004F97A2 /* QuoteCardView.swift */; };
+		763A567029F3AC550000FA80 /* LearnQuoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A566F29F3AC550000FA80 /* LearnQuoteCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,7 @@
 		7607ABAE29F2095700E26A53 /* CardStyleViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStyleViewModifier.swift; sourceTree = "<group>"; };
 		7607ABB129F219E600E26A53 /* LearnListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnListView.swift; sourceTree = "<group>"; };
 		7607ABB329F219F200E26A53 /* LearnListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnListViewModel.swift; sourceTree = "<group>"; };
+		7607ABB529F23D3C00E26A53 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		7638DA8829F16966004F97A2 /* EQuotes-MVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EQuotes-MVVM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7638DA8B29F16966004F97A2 /* EQuotes_MVVMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EQuotes_MVVMApp.swift; sourceTree = "<group>"; };
 		7638DA8D29F16966004F97A2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 		7638DB0C29F19558004F97A2 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		7638DB0F29F199E7004F97A2 /* HintCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintCardView.swift; sourceTree = "<group>"; };
 		7638DB1229F19AD3004F97A2 /* QuoteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardView.swift; sourceTree = "<group>"; };
+		763A566F29F3AC550000FA80 /* LearnQuoteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnQuoteCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +245,7 @@
 				7638DAFF29F1892D004F97A2 /* Loadable.swift */,
 				7638DAF529F187F6004F97A2 /* Logger */,
 				7638DB0929F1950C004F97A2 /* MockData.swift */,
+				7607ABB529F23D3C00E26A53 /* UserDefaultsWrapper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -276,9 +281,10 @@
 		7638DB0529F1943D004F97A2 /* QuoteCardView */ = {
 			isa = PBXGroup;
 			children = (
+				7638DB1229F19AD3004F97A2 /* QuoteCardView.swift */,
+				763A566F29F3AC550000FA80 /* LearnQuoteCardView.swift */,
 				7638DB0629F1944F004F97A2 /* ShowCardView.swift */,
 				7638DB0F29F199E7004F97A2 /* HintCardView.swift */,
-				7638DB1229F19AD3004F97A2 /* QuoteCardView.swift */,
 				7607ABAE29F2095700E26A53 /* CardStyleViewModifier.swift */,
 			);
 			path = QuoteCardView;
@@ -402,6 +408,7 @@
 				7607ABAF29F2095700E26A53 /* CardStyleViewModifier.swift in Sources */,
 				7638DB1029F199E7004F97A2 /* HintCardView.swift in Sources */,
 				7638DB1329F19AD3004F97A2 /* QuoteCardView.swift in Sources */,
+				7607ABB629F23D3C00E26A53 /* UserDefaultsWrapper.swift in Sources */,
 				7638DA8C29F16966004F97A2 /* EQuotes_MVVMApp.swift in Sources */,
 				7638DADD29F1854C004F97A2 /* LearnQuote.swift in Sources */,
 				7638DACF29F1764F004F97A2 /* AnimatedMenuButton.swift in Sources */,
@@ -411,6 +418,7 @@
 				7638DB0329F18F4D004F97A2 /* Publisher.swift in Sources */,
 				7638DAE329F18557004F97A2 /* Firebase+ModelName.swift in Sources */,
 				7638DAF829F187F6004F97A2 /* Logger.swift in Sources */,
+				763A567029F3AC550000FA80 /* LearnQuoteCardView.swift in Sources */,
 				7638DAF029F18713004F97A2 /* QuoteListView.swift in Sources */,
 				7638DAC629F1722C004F97A2 /* Color.swift in Sources */,
 				7638DB0A29F1950C004F97A2 /* MockData.swift in Sources */,

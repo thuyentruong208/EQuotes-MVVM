@@ -10,7 +10,7 @@ import SwiftUI
 struct QuoteCardView: View {
 
     let quoteItem: QuoteItem
-    @State var showFrontCard = true
+    @State var showFrontCard = false
 
     var body: some View {
         ZStack {

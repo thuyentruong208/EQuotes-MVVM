@@ -17,6 +17,7 @@ struct ShowCardView: View {
             extraInfoText
 
         }
+        .frame(maxWidth: .infinity)
         .modifier(CardStyleViewModifier(
             backgroundColor: .theme.showCardBackground,
             accent: .theme.showCardAccent)

@@ -71,6 +71,24 @@ class LearnListViewModel: ObservableObject {
         }
         .store(in: &cancelBag)
     }
+
+    func markAsDone(item: QuoteItem) {
+        dbManager.delete(DB.Fields.quoteID, isEqualTo: item.rID, in: DB.learnQuotes)
+            .sink(receiveCompletion: { (completion) in
+                switch (completion) {
+                case .failure(let error):
+                    logger.error("Error: \(error)")
+                case .finished:
+                    LearnDefaults.shared.todayLearnedCount += 1
+                    LearnDefaults.shared.learnedAt = Date()
+
+                    logger.info("[Done] doneLearnQuote \(item.rID)")
+                }
+
+            }, receiveValue: { _ in })
+            .store(in: &cancelBag)
+
+    }
 }
 
 private extension LearnListViewModel {
