@@ -11,6 +11,8 @@ import Firebase
 @main
 struct EQuotes_MVVMApp: App {
 
+    @Environment(\.scenePhase) var scenePhase
+
     init() {
         FirebaseApp.configure()
     }
@@ -18,6 +20,12 @@ struct EQuotes_MVVMApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+        }
+        .onChange(of: scenePhase) { newValue in
+            if scenePhase == .active {
+                LearnDefaults.shared.resetLearnDataIfNeeded()
+            }
+
         }
 
     }

@@ -22,6 +22,7 @@ struct MainView: View {
             // content
             VStack(spacing: 4) {
                 headerView
+
                 Divider().background(Color.theme.accent)
 
                 Spacer(minLength: 0)
@@ -34,9 +35,8 @@ struct MainView: View {
                 }
 
             }
-            .padding()
+            .padding(EdgeInsets(top: 65, leading: 20, bottom: 0, trailing: 20))
         }
-        .ignoresSafeArea(.all, edges: .bottom)
 
     }
 }
@@ -45,16 +45,10 @@ private extension MainView {
 
     var headerView: some View {
         HStack {
-            AnimatedMenuButton(showMenu: $showMenu)
-                .onTapGesture {
-                    withAnimation {
-                        showMenu.toggle()
-                    }
-                }
-
             Text(learnMode ? "Learn" : "Quotes")
                 .foregroundColor(.theme.accent)
                 .font(.title)
+                .padding(.leading, 8)
 
             Spacer()
 

@@ -70,6 +70,9 @@
 		763A568029F3DA210000FA80 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A567E29F3DA210000FA80 /* UIApplication.swift */; };
 		763A568229F3F00A0000FA80 /* AVHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A568129F3F00A0000FA80 /* AVHelper.swift */; };
 		763A568329F3F00A0000FA80 /* AVHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A568129F3F00A0000FA80 /* AVHelper.swift */; };
+		763A568629F3F8250000FA80 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A568529F3F8250000FA80 /* MenuView.swift */; };
+		763A568729F3F8250000FA80 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763A568529F3F8250000FA80 /* MenuView.swift */; };
+		76AD1AE629F421840056849A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AD1AE529F421840056849A /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +124,8 @@
 		763A567829F3B65B0000FA80 /* NewQuoteContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuoteContent.swift; sourceTree = "<group>"; };
 		763A567E29F3DA210000FA80 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		763A568129F3F00A0000FA80 /* AVHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVHelper.swift; sourceTree = "<group>"; };
+		763A568529F3F8250000FA80 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		76AD1AE529F421840056849A /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,8 +188,6 @@
 				7638DAC129F171DD004F97A2 /* Models */,
 				7638DAC029F171D2004F97A2 /* Gateways */,
 				7638DABD29F16C64004F97A2 /* GoogleService-Info.plist */,
-				7638DA8B29F16966004F97A2 /* EQuotes_MVVMApp.swift */,
-				7638DA8D29F16966004F97A2 /* ContentView.swift */,
 				7638DA8F29F16967004F97A2 /* Assets.xcassets */,
 				7638DA9129F16967004F97A2 /* EQuotes_MVVM.entitlements */,
 				7638DA9229F16967004F97A2 /* Preview Content */,
@@ -215,6 +218,7 @@
 				7638DB0229F18F4D004F97A2 /* Publisher.swift */,
 				7638DB0C29F19558004F97A2 /* String.swift */,
 				763A567E29F3DA210000FA80 /* UIApplication.swift */,
+				76AD1AE529F421840056849A /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -251,6 +255,9 @@
 		7638DAC329F171E8004F97A2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7638DA8B29F16966004F97A2 /* EQuotes_MVVMApp.swift */,
+				7638DA8D29F16966004F97A2 /* ContentView.swift */,
+				763A568429F3F3AE0000FA80 /* Menu */,
 				7638DAD529F180CA004F97A2 /* Main */,
 				763A567129F3AF650000FA80 /* Add or Update Quote */,
 			);
@@ -316,6 +323,14 @@
 				763A567829F3B65B0000FA80 /* NewQuoteContent.swift */,
 			);
 			path = "Add or Update Quote";
+			sourceTree = "<group>";
+		};
+		763A568429F3F3AE0000FA80 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				763A568529F3F8250000FA80 /* MenuView.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,11 +465,13 @@
 				7638DAE329F18557004F97A2 /* Firebase+ModelName.swift in Sources */,
 				7638DAF829F187F6004F97A2 /* Logger.swift in Sources */,
 				763A567029F3AC550000FA80 /* LearnQuoteCardView.swift in Sources */,
+				76AD1AE629F421840056849A /* View.swift in Sources */,
 				7638DAF029F18713004F97A2 /* QuoteListView.swift in Sources */,
 				7638DAC629F1722C004F97A2 /* Color.swift in Sources */,
 				7638DB0A29F1950C004F97A2 /* MockData.swift in Sources */,
 				7607ABB229F219E600E26A53 /* LearnListView.swift in Sources */,
 				7638DB0729F1944F004F97A2 /* ShowCardView.swift in Sources */,
+				763A568629F3F8250000FA80 /* MenuView.swift in Sources */,
 				7638DAE029F18552004F97A2 /* DatabaseManager.swift in Sources */,
 				763A568229F3F00A0000FA80 /* AVHelper.swift in Sources */,
 				7607ABB429F219F200E26A53 /* LearnListViewModel.swift in Sources */,
@@ -478,6 +495,7 @@
 				7638DAFB29F187F6004F97A2 /* FileLogger.swift in Sources */,
 				763A567A29F3B65B0000FA80 /* NewQuoteContent.swift in Sources */,
 				7638DB0129F1892D004F97A2 /* Loadable.swift in Sources */,
+				763A568729F3F8250000FA80 /* MenuView.swift in Sources */,
 				7638DAF129F18713004F97A2 /* QuoteListView.swift in Sources */,
 				7638DB0429F18F4D004F97A2 /* Publisher.swift in Sources */,
 				7638DAF429F18720004F97A2 /* QuoteListViewModel.swift in Sources */,
