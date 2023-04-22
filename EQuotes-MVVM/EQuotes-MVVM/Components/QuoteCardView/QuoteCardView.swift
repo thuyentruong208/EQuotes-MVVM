@@ -20,8 +20,12 @@ struct QuoteCardView: View {
 
     var body: some View {
         ZStack {
-            VStack {
-                updateButton
+            VStack(spacing: 0) {
+                HStack(spacing: 16) {
+                    updateButton
+                    speakButton
+                }
+                .padding(.bottom, 8)
 
                 if showFrontCard {
                     ShowCardView(quoteItem: quoteItem)
@@ -49,7 +53,7 @@ private extension QuoteCardView {
         } label: {
             Image(systemName: "square.and.pencil.circle")
                 .resizable()
-                .frame(width: 30, height: 30)
+                .frame(width: 25, height: 25)
                 .foregroundColor(Color.white)
 
         }
@@ -60,6 +64,19 @@ private extension QuoteCardView {
                 newQuoteContent: NewQuoteContent(quoteItem: quoteItem)
             )
         }
+    }
+
+    var speakButton: some View {
+        Button {
+            AVHelper.shared.speak(text: quoteItem.en)
+
+        } label: {
+            Image(systemName: "speaker.wave.2.fill")
+                .resizable()
+                .frame(width: 22, height: 22)
+                .foregroundColor(.theme.accent)
+        }
+
     }
 
 }
