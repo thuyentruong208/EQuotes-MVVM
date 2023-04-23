@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 @main
 struct EQuotes_MVVMApp: App {
@@ -15,6 +16,13 @@ struct EQuotes_MVVMApp: App {
 
     init() {
         FirebaseApp.configure()
+
+        Auth.auth().signInAnonymously() { _, error in
+            if let error = error {
+                logger.error("Error: \(error)")
+                return
+            }
+        }
     }
 
     var body: some Scene {
