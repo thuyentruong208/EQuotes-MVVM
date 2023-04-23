@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LearnListView: View {
-    @StateObject var vm = LearnListViewModel(dbManager: RealDatabaseManager())
+    @StateObject var vm = LearnListViewModel()
 
     var body: some View {
         VStack {
@@ -19,7 +19,10 @@ struct LearnListView: View {
                     ForEach(vm.learnQuotesLoadable.valueOrEmpty) { quoteItem in
                         LearnQuoteCardView(quoteItem: quoteItem)
                             .environmentObject(vm)
-                            
+                            .task {
+                                await vm.autoFillHintIfNeeded(item: quoteItem)
+                            }
+
                     }
 
                 }

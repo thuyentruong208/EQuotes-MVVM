@@ -9,19 +9,29 @@ import Foundation
 import Combine
 
 extension Publisher {
-    func mapToLoadble<T>(_ result: @escaping (Loadable<T>) -> Void) -> AnyCancellable {
+    func mapToLoadble<T>(_ handler: @escaping (Loadable<T>) -> Void) -> AnyCancellable {
         sink(receiveCompletion: { completion in
             switch completion {
             case let .failure(error):
                 logger.error("Error: \(error)")
-                result(.failed(error))
+                handler(.failed(error))
             default: break
             }
         }, receiveValue: { value in
             guard let value = value as? T else {
                 return
             }
-            result(.loaded(value))
+            handler(.loaded(value))
         })
+    }
+
+    func generalCompletionHandler() -> AnyCancellable {
+        sink(receiveCompletion: { completion in
+            switch completion {
+            case let .failure(error):
+                logger.error("Error: \(error)")
+            default: break
+            }
+        }, receiveValue: { (_) in })
     }
 }

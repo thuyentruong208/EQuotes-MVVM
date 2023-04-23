@@ -30,6 +30,8 @@ protocol DatabaseManager {
 }
 
 class RealDatabaseManager: DatabaseManager {
+    static let shared = RealDatabaseManager()
+
     fileprivate let db = Firestore.firestore()
     fileprivate var listeners = [String: ListenerRegistration]()
 

@@ -15,7 +15,7 @@ class QuoteListViewModel: ObservableObject {
     let dbManager: DatabaseManager
     var cancelBag = Set<AnyCancellable>()
 
-    init(dbManager: DatabaseManager) {
+    init(dbManager: DatabaseManager = RealDatabaseManager.shared) {
         self.dbManager = dbManager
         addSubscribers()
     }

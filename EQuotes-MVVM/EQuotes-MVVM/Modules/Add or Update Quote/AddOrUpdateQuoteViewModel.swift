@@ -17,7 +17,7 @@ class AddOrUpateQuoteViewModel: ObservableObject {
     @Published var addQuoteStatus: Loadable<Bool> = .notRequested
     @Published var updateQuoteStatus: Loadable<Bool> = .notRequested
 
-    init(dbManager: DatabaseManager) {
+    init(dbManager: DatabaseManager = RealDatabaseManager.shared) {
         self.dbManager = dbManager
     }
 

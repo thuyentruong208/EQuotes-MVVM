@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuoteListView: View {
-    @StateObject var vm = QuoteListViewModel(dbManager: RealDatabaseManager())
+    @StateObject var vm = QuoteListViewModel()
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {

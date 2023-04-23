@@ -14,11 +14,16 @@ class LearnListViewModel: ObservableObject {
     @Published var learnQuotesCount: Int = -1
     @Published var toDateLoadable: Loadable<Date?> = .notRequested
 
-    let dbManager: DatabaseManager
-    var cancelBag = Set<AnyCancellable>()
+    private let dbManager: DatabaseManager
+    private let englishAPI: EnglishAPI
+    private var cancelBag = Set<AnyCancellable>()
 
-    init(dbManager: DatabaseManager) {
+    init(
+        dbManager: DatabaseManager = RealDatabaseManager.shared,
+        englishAPI: EnglishAPI = RealEnglishAPI()
+    ) {
         self.dbManager = dbManager
+        self.englishAPI = englishAPI
         addSubscribers()
     }
 
@@ -87,6 +92,23 @@ class LearnListViewModel: ObservableObject {
 
             }, receiveValue: { _ in })
             .store(in: &cancelBag)
+
+    }
+
+    func autoFillHintIfNeeded(item: QuoteItem) async {
+        guard item.ask == "" || item.ask == nil else {
+            return
+        }
+
+        do {
+            let translatedText = try await englishAPI.translate(item.en)
+            let newQuoteItem = item.copyWith(ask: translatedText)
+            dbManager.update(key: item.rID, newQuoteItem, in: DB.quoteItems)
+                .generalCompletionHandler()
+                .store(in: &cancelBag)
+        } catch {
+            logger.error("Error: \(error.localizedDescription)")
+        }
 
     }
 }

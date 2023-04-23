@@ -12,7 +12,7 @@ struct AddOrUpdateQuoteView: View {
     let titleScreen: String
     let showFrontCard: Bool
     @StateObject var newQuoteContent = NewQuoteContent()
-    @StateObject var vm = AddOrUpateQuoteViewModel(dbManager: RealDatabaseManager())
+    @StateObject var vm = AddOrUpateQuoteViewModel()
     @Environment(\.dismiss) private var dismiss
     @State private var showCheckmark = false
     @State private var showError = false
