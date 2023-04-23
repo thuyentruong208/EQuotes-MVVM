@@ -15,12 +15,15 @@ protocol DatabaseManager {
     func observeList<T: Decodable>(
         _ dump: T.Type,
         in collectionPath: String,
-        order: (by: String, descending: Bool)?) -> AnyPublisher<[T], Error>
+        order: [(by: String, descending: Bool)]
+    ) -> AnyPublisher<[T], Error>
+
     func observeItem<T: Decodable>(
         _ dump: T.Type,
         in collectionPath: String,
         key: String
     ) -> AnyPublisher<T, Error>
+
     func observeList<T: Decodable>(_ dump: T.Type, keys: [String], in collectionPath: String) -> AnyPublisher<[T], Error>
 
     func update<T: Codable>(key: String, _ item: T, in collectionPath: String) -> AnyPublisher<Void, Error>
@@ -80,7 +83,8 @@ class RealDatabaseManager: DatabaseManager {
     func observeList<T: Decodable>(
         _ dump: T.Type,
         in collectionPath: String,
-        order: (by: String, descending: Bool)?)
+        order: [(by: String, descending: Bool)] = []
+    )
     -> AnyPublisher<[T], Error> {
         listeners[collectionPath]?.remove()
         let publisher = PassthroughSubject<[T], Error>()
@@ -102,15 +106,13 @@ class RealDatabaseManager: DatabaseManager {
             }
         }
 
-        let collectionRef = db.collection(collectionPath)
-        if let order = order {
-            let query = collectionRef
-                .order(by: order.by, descending: order.descending)
-            listeners[collectionPath] = query.addSnapshotListener(handleSnapshot(_:_:))
-
-        } else {
-            listeners[collectionPath] = collectionRef.addSnapshotListener(handleSnapshot(_:_:))
+        var collectionRef: Query = db.collection(collectionPath)
+        for o in order {
+            collectionRef = collectionRef
+                .order(by: o.by, descending: o.descending)
         }
+
+        listeners[collectionPath] = collectionRef.addSnapshotListener(handleSnapshot)
 
         return publisher.eraseToAnyPublisher()
     }

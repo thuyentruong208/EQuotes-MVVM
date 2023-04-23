@@ -26,7 +26,7 @@ class QuoteListViewModel: ObservableObject {
         dbManager.observeList(
             QuoteItem.self,
             in: DB.quoteItems,
-            order: (by: DB.Fields.createdAt, descending: true)
+            order: [(by: DB.Fields.createdAt, descending: true)]
         )
         .mapToLoadble { [weak self] (loadable) in
             self?.quotesLoadable = loadable

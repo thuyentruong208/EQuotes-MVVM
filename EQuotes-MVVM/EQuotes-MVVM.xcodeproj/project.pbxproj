@@ -87,6 +87,7 @@
 		76AD1AFC29F5030E0056849A /* FormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AD1AF629F5030E0056849A /* FormData.swift */; };
 		76AD1AFE29F503CB0056849A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AD1AFD29F503CB0056849A /* APIClient.swift */; };
 		76AD1AFF29F503CB0056849A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AD1AFD29F503CB0056849A /* APIClient.swift */; };
+		76AD1B0129F5122F0056849A /* LearnListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607ABB329F219F200E26A53 /* LearnListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -542,6 +543,7 @@
 				7638DAFB29F187F6004F97A2 /* FileLogger.swift in Sources */,
 				763A567A29F3B65B0000FA80 /* NewQuoteContent.swift in Sources */,
 				76AD1AF229F502CD0056849A /* APIClientProvider.swift in Sources */,
+				76AD1B0129F5122F0056849A /* LearnListViewModel.swift in Sources */,
 				7638DB0129F1892D004F97A2 /* Loadable.swift in Sources */,
 				763A568729F3F8250000FA80 /* MenuView.swift in Sources */,
 				7638DAF129F18713004F97A2 /* QuoteListView.swift in Sources */,

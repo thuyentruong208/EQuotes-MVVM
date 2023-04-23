@@ -38,7 +38,10 @@ class LearnListViewModel: ObservableObject {
         dbManager.observeList(
             LearnQuote.self,
             in: DB.learnQuotes,
-            order: (by: DB.Fields.createdAt, descending: true)
+            order: [
+                (by: DB.Fields.createdAt, descending: true),
+                (by: DB.Fields.quoteID, descending: true)
+            ]
         )
         .map { [weak self] (items) in
             self?.learnQuotesCount = items.count
