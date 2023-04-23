@@ -19,7 +19,7 @@ struct MenuView: View {
                 Spacer()
             }
             .padding()
-            .frame(maxWidth: getRect().width - 170)
+            .frame(maxWidth: getRect().width * 0.55 - 20)
 
             Spacer()
         }

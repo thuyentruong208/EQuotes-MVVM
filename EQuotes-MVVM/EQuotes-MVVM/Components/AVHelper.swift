@@ -16,6 +16,7 @@ struct AVHelper {
 
     func speak(text: String) {
         // this  AVAudioSession method is for speak text when device is in silent mode
+        #if os(iOS)
         do {
             try AVAudioSession.sharedInstance()
                 .setCategory(.playback,mode: .default)
@@ -23,6 +24,7 @@ struct AVHelper {
         } catch let error {
             logger.error("This error message from SpeechSynthesizer \(error.localizedDescription)")
         }
+        #endif
 
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")

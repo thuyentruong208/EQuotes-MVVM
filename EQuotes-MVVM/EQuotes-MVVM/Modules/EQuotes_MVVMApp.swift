@@ -28,7 +28,12 @@ struct EQuotes_MVVMApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            #if os(macOS)
+                .frame(maxWidth: 700, maxHeight: .infinity)
+            #endif
+
         }
+        .windowResizabilityContentSize()
         .onChange(of: scenePhase) { newValue in
             if scenePhase == .active {
                 LearnDefaults.shared.resetLearnDataIfNeeded()

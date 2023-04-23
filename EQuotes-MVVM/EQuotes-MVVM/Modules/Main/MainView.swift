@@ -64,25 +64,24 @@ private extension MainView {
     }
 
     var addQuoteButton: some View {
-        Button {
-            showAddQuoteView.toggle()
-
-        } label: {
-            Image(systemName: "plus.circle.fill")
-                .resizable()
-                .frame(width: 30, height: 30)
-                .foregroundColor(.theme.accent)
-        }
-        .sheet(isPresented: $showAddQuoteView) {
-            AddOrUpdateQuoteView(titleScreen: "Add Quote", showFrontCard: true)
-        }
+        Image(systemName: "plus.circle.fill")
+            .resizable()
+            .frame(width: 30, height: 30)
+            .foregroundColor(.theme.accent)
+            .onTapGesture {
+                showAddQuoteView.toggle()
+            }
+            .sheet(isPresented: $showAddQuoteView) {
+                AddOrUpdateQuoteView(titleScreen: "Add Quote", showFrontCard: true)
+            }
     }
 
     var learnCountView: some View {
         Text("\(todayLearnedCount)")
             .foregroundColor(.secondTheme.accent)
-            .font(.subheadline)
+            .font(.headline)
             .padding(6)
+            .frame(minWidth: 30, minHeight: 30)
             .background(Circle().fill(Color.secondTheme.background))
     }
 }

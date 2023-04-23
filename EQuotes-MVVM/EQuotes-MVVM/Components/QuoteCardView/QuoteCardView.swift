@@ -10,33 +10,24 @@ import SwiftUI
 struct QuoteCardView: View {
 
     let quoteItem: QuoteItem
+    let supportFunctions: Bool
     @State var showFrontCard = false
     @State var showEditQuoteView = false
 
-    init(for quoteItem: QuoteItem, showFrontCard: Bool) {
+    init(for quoteItem: QuoteItem, supportFunctions: Bool = true, showFrontCard: Bool) {
         self.quoteItem = quoteItem
+        self.supportFunctions = supportFunctions
         self._showFrontCard = State(initialValue: showFrontCard)
     }
 
     var body: some View {
         ZStack {
-            VStack(spacing: 0) {
-                HStack(spacing: 16) {
-                    updateButton
-                    speakButton
-                }
-                .padding(.bottom, 8)
-
-                if showFrontCard {
-                    ShowCardView(quoteItem: quoteItem)
-
-                } else {
-                    HintCardView(quoteItem: quoteItem)
-
-                }
+            if supportFunctions {
+                layoutedContent
+            } else {
+                quoteCardView
             }
         }
-        .frame(maxWidth: 500)
         .onTapGesture {
             withAnimation(.linear(duration: 0.25)) {
                 showFrontCard.toggle()
@@ -47,36 +38,74 @@ struct QuoteCardView: View {
 }
 
 private extension QuoteCardView {
-    var updateButton: some View {
-        Button {
-            showEditQuoteView.toggle()
-        } label: {
-            Image(systemName: "square.and.pencil.circle")
-                .resizable()
-                .frame(width: 25, height: 25)
-                .foregroundColor(Color.white)
+    var layoutedContent: some View {
+        if getRect().width <= 400 {
+            return AnyView(
+                VStack(spacing: 0) {
+                    HStack(spacing: 16) {
+                        updateButton
+                        speakButton
+                    }
+                    .padding(.bottom, 8)
 
-        }
-        .sheet(isPresented: $showEditQuoteView) {
-            AddOrUpdateQuoteView(
-                titleScreen: "Update Quote",
-                showFrontCard: showFrontCard,
-                newQuoteContent: NewQuoteContent(quoteItem: quoteItem)
-            )
+                    quoteCardView
+                })
+        } else {
+            return AnyView(
+                HStack(spacing: 20) {
+                    quoteCardView
+
+                    VStack(spacing: 16) {
+                        updateButton
+                        speakButton
+                    }
+                })
         }
     }
 
-    var speakButton: some View {
-        Button {
-            AVHelper.shared.speak(text: quoteItem.en)
+    var quoteCardView: some View {
+        ZStack {
+            if showFrontCard {
+                ShowCardView(quoteItem: quoteItem)
 
-        } label: {
-            Image(systemName: "speaker.wave.2.fill")
-                .resizable()
-                .frame(width: 22, height: 22)
-                .foregroundColor(.theme.accent)
+            } else {
+                HintCardView(quoteItem: quoteItem)
+
+            }
         }
+        .frame(maxWidth: 500)
+        .onTapGesture {
+            withAnimation(.linear(duration: 0.25)) {
+                showFrontCard.toggle()
+            }
+        }
+    }
 
+    var updateButton: some View {
+        Image(systemName: "square.and.pencil.circle")
+            .resizable()
+            .frame(width: 25, height: 25)
+            .foregroundColor(Color.white)
+            .onTapGesture {
+                showEditQuoteView.toggle()
+            }
+            .sheet(isPresented: $showEditQuoteView) {
+                AddOrUpdateQuoteView(
+                    titleScreen: "Update Quote",
+                    showFrontCard: showFrontCard,
+                    newQuoteContent: NewQuoteContent(quoteItem: quoteItem)
+                )
+            }
+    }
+
+    var speakButton: some View {
+        Image(systemName: "speaker.wave.2.fill")
+            .resizable()
+            .frame(width: 22, height: 22)
+            .foregroundColor(.theme.accent)
+            .onTapGesture {
+                AVHelper.shared.speak(text: quoteItem.en)
+            }
     }
 
 }

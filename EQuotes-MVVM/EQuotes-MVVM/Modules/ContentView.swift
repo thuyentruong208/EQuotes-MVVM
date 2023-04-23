@@ -35,7 +35,7 @@ struct ContentView: View {
 
             }
             .scaleEffect(showMenu ? 0.84 : 1)
-            .offset(x: showMenu ? getRect().width - 150 : 0)
+            .offset(x: showMenu ? getRect().width * 0.55 : 0)
 
         }
         .ignoresSafeArea(.all)
@@ -47,6 +47,7 @@ struct ContentView: View {
                     }
                 }
                 .padding(.leading, 10)
+                .padding(.top, 6)
         }
     }
 }

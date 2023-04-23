@@ -23,18 +23,30 @@ struct AddOrUpdateQuoteView: View {
             VStack(spacing: 16) {
                 QuoteCardView(
                     for: newQuoteContent.toQuoteItem(),
+                    supportFunctions: false,
                     showFrontCard: showFrontCard)
 
                 Divider()
 
                 addOrUpdateForm
+
+                Spacer()
             }
             .onChange(of: vm.addQuoteStatus, perform: onChangeAddQuoteStatus)
             .onChange(of: vm.updateQuoteStatus, perform: onChangeUpdateQuoteStatus)
-            .padding(.horizontal, 16)
+            .padding(EdgeInsets(top: 20, leading: 16, bottom: 20, trailing: 16))
             .background(Color.secondTheme.background)
             .navigationTitle(titleScreen)
             .toolbar {
+                #if os(macOS)
+                ToolbarItem(placement: .primaryAction) {
+                    trailingNavBarButton
+                }
+
+                ToolbarItem(placement: .destructiveAction) {
+                    leadingNavBarButton
+                }
+                #else
                 ToolbarItem(placement: .navigationBarLeading) {
                     leadingNavBarButton
                 }
@@ -43,9 +55,14 @@ struct AddOrUpdateQuoteView: View {
                     trailingNavBarButton
 
                 }
-            }
+                #endif
+
+                }
         }
         .preferredColorScheme(.light)
+        #if os(macOS)
+        .frame(width: 640, height: getRect().height - 300)
+        #endif
     }
 
 }
@@ -95,14 +112,14 @@ private extension AddOrUpdateQuoteView {
                     .foregroundColor(Color.secondTheme.accent)
             }
 
-
+            #if os(iOS)
             Button {
                 UIApplication.shared.endEditing()
             } label: {
                 Image(systemName: "keyboard.chevron.compact.down")
                     .foregroundColor(.secondTheme.accent)
             }
-
+            #endif
 
             Button {
                 saveButtonPressed()
