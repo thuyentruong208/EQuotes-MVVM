@@ -99,6 +99,13 @@ class LearnListViewModel: ObservableObject {
 
     }
 
+    func resetLearnDataIfNeeded() {
+        if !Calendar.current.isDateInToday(LearnDefaults.shared.learnedAt) {
+            LearnDefaults.shared.learnedAt = Date()
+            LearnDefaults.shared.todayLearnedCount = 0
+        }
+    }
+
     func autoFillHintIfNeeded(item: QuoteItem) async {
         guard item.ask == "" || item.ask == nil else {
             return

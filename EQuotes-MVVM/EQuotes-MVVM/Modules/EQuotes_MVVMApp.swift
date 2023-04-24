@@ -12,8 +12,6 @@ import FirebaseAuth
 @main
 struct EQuotes_MVVMApp: App {
 
-    @Environment(\.scenePhase) var scenePhase
-
     init() {
         FirebaseApp.configure()
 
@@ -34,12 +32,5 @@ struct EQuotes_MVVMApp: App {
 
         }
         .windowResizabilityContentSize()
-        .onChange(of: scenePhase) { newValue in
-            if scenePhase == .active {
-                LearnDefaults.shared.resetLearnDataIfNeeded()
-            }
-
-        }
-
     }
 }

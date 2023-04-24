@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct LearnListView: View {
+
     @StateObject var vm = LearnListViewModel()
+    @Environment(\.scenePhase) var scenePhase
 
     var body: some View {
         VStack {
@@ -37,6 +39,10 @@ struct LearnListView: View {
                 }
             }
         }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                vm.resetLearnDataIfNeeded()
+                vm.generateLearnQuotes()
             }
         }
     }

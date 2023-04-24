@@ -45,13 +45,4 @@ class LearnDefaults {
 
     @UserDefault(key: Keys.learnedAt, defaultValue: Date())
     var learnedAt: Date
-
-    func resetLearnDataIfNeeded() {
-        if !Calendar.current.isDateInToday(learnedAt) {
-            learnedAt = Date()
-            todayLearnedCount = 0
-        }
-
-    }
-
 }
