@@ -11,19 +11,20 @@ EQuotes is an application helping to learn English by quotes/sentences.
 ![](./EQuotes-MVVM/Resources/app-preview.png)
 
 ## Key Features
-- App Structure
-![](./EQuotes-MVVM/Resources/app-structure.png)
--
-- MVVM Design Pattern - Decoupled **Presentation**, **Business Logic**, and **Data Access layers**.
-![](./EQuotes-MVVM/Resources/mvvm.jpeg)
+* App Structure
+ <img src="./EQuotes-MVVM/Resources/app-structure.png" width="250">
 
- Referenced by 
- * [Swift Tutorial: An Introduction to the MVVM Design Pattern](https://adevait.com/ios/swift-tutorial-mvvm-design-pattern)  
- * [Build SwiftUI App with MVVM, Core Data, Combine, and API requests | SwiftUI Crypto App](https://www.youtube.com/watch?v=TTYKL6CfbSs&list=PLwvDm4Vfkdphbc3bgy_LpLRQ9DDfFGcFu)
-- Realtime Database using **Firebase**
-- Request remote API: Google Translate API
-- **SwiftUI** + **Combine** implementation
-![](./EQuotes-MVVM/Resources/app-preview-multiple-devices.png)
+* MVVM Design Pattern - Decoupled **Presentation**, **Business Logic**, and **Data Access layers**.
+    - [Swift Tutorial: An Introduction to the MVVM Design Pattern](https://adevait.com/ios/swift-tutorial-mvvm-design-pattern)  
+    - [Build SwiftUI App with MVVM, Core Data, Combine, and API requests | SwiftUI Crypto App](https://www.youtube.com/watch?v=TTYKL6CfbSs&list=PLwvDm4Vfkdphbc3bgy_LpLRQ9DDfFGcFu)
+ <img src="./EQuotes-MVVM/Resources/mvvm.jpeg" width="680">
+
+
+* Realtime Database using **Firebase**
+* **Request remote API**: Google Translate API
+
+* **SwiftUI** + **Combine** implementation
+ <img src="./EQuotes-MVVM/Resources/app-preview-multiple-devices.png" width="680">
 
 ## Getting Started
 
