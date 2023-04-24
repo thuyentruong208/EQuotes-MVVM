@@ -17,6 +17,7 @@ class LearnListViewModel: ObservableObject {
     private let dbManager: DatabaseManager
     private let englishAPI: EnglishAPI
     private var cancelBag = Set<AnyCancellable>()
+    private let numberOfNewQuotesPerDay = 5
 
     init(
         dbManager: DatabaseManager = RealDatabaseManager.shared,
@@ -114,6 +115,29 @@ class LearnListViewModel: ObservableObject {
         }
 
     }
+
+    func generateLearnQuotes(force: Bool = false) {
+        guard case let .loaded(toDate) = toDateLoadable else {
+            return
+        }
+
+        let (numberOfNewQuotes, newToDate) = calNumberOfNewQuotes(generatedDate: toDate, force: force)
+        guard numberOfNewQuotes > 0 else {
+            return
+        }
+
+        // create learnQuote in dbManager
+        dbManager.observeList(QuoteItem.self, in: DB.quoteItems, order: [])
+            .map { ($0.map(\.rID), numberOfNewQuotes) }
+            .map(generateNewQuoteIDs)
+            .map { ($0, newToDate) }
+            .flatMap(createLearnQuote)
+            .map { [weak self] in
+                self?.toDateLoadable = .loaded(newToDate)
+            }
+            .generalCompletionHandler()
+            .store(in: &cancelBag)
+    }
 }
 
 private extension LearnListViewModel {
@@ -128,5 +152,72 @@ private extension LearnListViewModel {
 
         return Fail(error: error)
             .eraseToAnyPublisher()
+    }
+
+    // calNumberOfNewQuotes
+    // if force is false:
+    //      => numberOfNewQuotes = 5 * missing generated days
+    //      => numberOfNewQuotes = 0 if already generated enough
+    // if force is true
+    //      => numberOfNewQuotes = 5 * missing generated days
+    //      => numberOfNewQuotes = 5 if already generated enough and generate more
+    func calNumberOfNewQuotes(generatedDate: Date?, force: Bool) -> (Int, Date) {
+        var numberOfNewQuotes = numberOfNewQuotesPerDay // default number of generated LearnQuote
+        if let generatedDate = generatedDate {
+            var diff = Calendar.current.numberOfDaysBetween(generatedDate, and: Date())
+            diff = diff <= 0 ? 0 : diff
+            numberOfNewQuotes = diff * 5
+        }
+
+        var newToDate = Date()
+        if force && numberOfNewQuotes == 0 {
+            newToDate = generatedDate?.addingTimeInterval(24 * 3600) ?? Date()
+            numberOfNewQuotes = 5
+        }
+
+        return (numberOfNewQuotes, newToDate)
+    }
+
+    func generateNewQuoteIDs(quoteIDs: [String], numberOfNewQuotes: Int) -> [String] {
+        var newQuoteIDs = [String]()
+        var numberOfNewQuotes = numberOfNewQuotes
+        var setQuotes = Set(learnQuotesLoadable.valueOrEmpty.map(\.rID) )
+
+        while numberOfNewQuotes > 0 {
+            if let newQuoteID = quoteIDs.randomElement() {
+                if !setQuotes.contains(newQuoteID) {
+                    newQuoteIDs.append(newQuoteID)
+                    setQuotes.insert(newQuoteID)
+                    numberOfNewQuotes -= 1
+                }
+
+            } else {
+                break
+            }
+        }
+
+        return newQuoteIDs
+    }
+
+    func createLearnQuote(newQuoteIDs: [String], date: Date) -> AnyPublisher<Void, Error> {
+        let itemsData = newQuoteIDs.map {
+            [
+                DB.Fields.quoteID: $0,
+                DB.Fields.createdAt: Date()
+            ]
+        }
+
+        return dbManager.create([
+            (
+                items: itemsData,
+                collectionPath: DB.learnQuotes,
+                documentKey: nil
+            ),
+            (
+                items: [[DB.Fields.value: date]],
+                collectionPath: DB.userSettings,
+                documentKey: DB.KeyID.toDate
+            )
+        ])
     }
 }
