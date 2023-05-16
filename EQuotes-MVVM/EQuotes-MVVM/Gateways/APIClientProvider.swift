@@ -9,7 +9,6 @@ import Foundation
 
 class APIClientProvider {
     static let translateAPIKey: String = Credential.valueForKey(keyName: "TRANSLATE_API_KEY")
-    static let translateEndpoint = "https://translation.googleapis.com/language/translate/v2"
 
     static let session: URLSession = {
         let configuration = URLSessionConfiguration.default

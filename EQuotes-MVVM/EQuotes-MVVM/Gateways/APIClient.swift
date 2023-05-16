@@ -9,96 +9,49 @@ import Foundation
 import Combine
 
 protocol APIClient {
-    func buildRequest<T: Encodable>(method: String?,
-                       path: String,
-                       headers: [String: String]?,
-                       queryItems: [String: String]?,
-                       formData: FormData?,
-                                    body: T?) -> URLRequest
+    func buildRequest<T>(on api: APIHost, with data: RequestData<T>) -> URLRequest?
+
+    func execute<T, R: Decodable>(
+        on APIHost: APIHost,
+        with data: RequestData<T>
+    ) async throws -> R
 }
 
 extension APIClient {
-    func buildRequest<T: Encodable>(method: String? = "GET",
-                      path: String,
-                      headers: [String: String]? = nil,
-                      queryItems: [String: String]? = nil,
-                      formData: FormData? = nil,
-                      body: T? = nil) -> URLRequest {
+    func buildRequest<T>(on api: APIHost, with data: RequestData<T>) -> URLRequest? {
+        var components = URLComponents()
+        components.scheme = api.scheme
+        components.host = api.host
+        components.path = "/" + data.path
+        components.queryItems = data.queryItems.isEmpty ? nil : data.queryItems
 
-        return buildRequest(method: method,
-                            path: path,
-                            headers: headers,
-                            queryItems: queryItems,
-                            formData: formData,
-                            body: body)
-    }
-}
-
-class RealAPIClient: APIClient {
-
-
-    // MARK: - Properties
-    fileprivate let baseURL: URL
-    fileprivate let session: URLSession
-
-    fileprivate static let logIgnoreEndpoints: [String] = []
-    fileprivate static let logFilterRegex = #""[^"]*(key|id|jwt|address|descriptor|signature|password|email|phone|shard|secret|receipt_data)[^"]*"\s*:\s*("[^"]*"|\d+(.\d+)|\[[^\]]*\]|\{[^\{]*\}),*"#
-
-    init(baseURLString: String, session: URLSession = APIClientProvider.session) {
-        guard let baseURL = URL(string: baseURLString) else {
-            fatalError("invalid endpoint")
+        // If either the path or the query items passed contained
+        // invalid characters, we'll get a nil URL back:
+        guard let url = components.url else {
+            return nil
         }
 
-        self.baseURL = baseURL
-        self.session = session
-    }
+        var request = URLRequest(url: url)
+        request.httpMethod = data.method
 
-    func buildRequest<T: Encodable>(method: String?,
-                      path: String,
-                      headers: [String : String]?,
-                      queryItems: [String : String]?,
-                      formData: FormData?,
-                    body: T?) -> URLRequest {
-
-        guard var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else {
-            fatalError("invalid base url")
+        for (key, value) in api.headers {
+            request.addValue(value, forHTTPHeaderField: key)
         }
 
-        urlComponents.path += path
-        if let queryItems = queryItems {
-            var items = [URLQueryItem]()
-            for (key, value) in queryItems {
-                items.append(URLQueryItem(name: key, value: value))
-            }
-            urlComponents.queryItems = items
+        if let accessToken = api.accessToken {
+            request.addValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
         }
 
-        guard let url = urlComponents.url else {
-            fatalError("invalid url")
-        }
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = method
-        urlRequest.cachePolicy = .reloadIgnoringLocalCacheData
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        if let headers = headers {
-            for (k, v) in headers {
-                urlRequest.addValue(v, forHTTPHeaderField: k)
-            }
-        }
-
-        if let body = body {
+        if !(data.body is NullBody) {
             // if there is the body, attach -H "Content-Type: application/json"
-            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
             let jsonEncoder = JSONEncoder()
             jsonEncoder.outputFormatting = .withoutEscapingSlashes
-            urlRequest.httpBody = try? jsonEncoder.encode(
-                body
-            )
-        } else if let formData = formData {
+            request.httpBody = try? jsonEncoder.encode(data.body)
+        } else if let formData = data.formData {
             let boundary = UUID().uuidString
-            urlRequest.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
             var body = [UInt8]()
             body.append(contentsOf: "--\(boundary)\r\n".utf8)
             body.append(contentsOf: "Content-Disposition:form-data; name=\"\(formData.name)\"; filename=\"\(formData.name)\"\r\n".utf8)
@@ -106,9 +59,31 @@ class RealAPIClient: APIClient {
             body.append(contentsOf: formData.data)
             body.append(contentsOf: "\r\n".utf8)
             body.append(contentsOf: "--\(boundary)--\r\n".utf8)
-            urlRequest.httpBody = Data(body)
+            request.httpBody = Data(body)
         }
 
-        return urlRequest
+        return request
+    }
+}
+
+class RealAPIClient: APIClient {
+
+    // MARK: - Properties
+    fileprivate let session: URLSession
+
+    init(session: URLSession = APIClientProvider.session) {
+        self.session = session
+    }
+
+    func execute<T, R: Decodable>(
+        on host: APIHost,
+        with data: RequestData<T>
+    ) async throws -> R {
+        guard let request = buildRequest(on: host, with: data) else {
+            throw APIError.invalidEndpoint(endpoint: data.path)
+        }
+
+        let (data, _) = try await session.data(for: request)
+        return try JSONDecoder().decode(R.self, from: data)
     }
 }
