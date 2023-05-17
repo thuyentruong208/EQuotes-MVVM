@@ -70,6 +70,7 @@ class RealAPIClient: APIClient {
 
     // MARK: - Properties
     fileprivate let session: URLSession
+    fileprivate static let logFilterRegex = #""[^"]*(key|id|jwt|address|descriptor|signature|password|email|phone|shard|secret|receipt_data)[^"]*"\s*:\s*("[^"]*"|\d+(.\d+)|\[[^\]]*\]|\{[^\{]*\}),*"#
 
     init(session: URLSession = APIClientProvider.session) {
         self.session = session
@@ -83,7 +84,109 @@ class RealAPIClient: APIClient {
             throw APIError.invalidEndpoint(endpoint: data.path)
         }
 
-        let (data, _) = try await session.data(for: request)
+        let (data, response) = try await session.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw APIError.unknown
+        }
+
+        DispatchQueue.global().async {
+            logger.debug("------------REQUEST FROM SERVER------------")
+            logger.info("\(request.curlString)")
+            logger.debug("------------RESPONSE FROM SERVER------------")
+            if 400 ..< 600 ~= httpResponse.statusCode {
+                logger.error("HTTP Status code: \(httpResponse.statusCode) | \(String(data: data, encoding: .utf8) ?? "")")
+                logger.debug("------------END RESPONSE FROM SERVER------------")
+            } else {
+                #if DEBUG
+                logger.info("HTTP Status code: \(httpResponse.statusCode) | \(String(data: data, encoding: .utf8) ?? "")")
+                #else
+                do {
+                    if !Self.logIgnoreEndpoints.contains(where: { request.url?.absoluteString.contains($0) ?? false }),
+                       let responseStr = String(data: data, encoding: .utf8) {
+                        let regex = try NSRegularExpression(pattern: APIClient.logFilterRegex, options: .caseInsensitive)
+                        let logStr = regex.stringByReplacingMatches(in: responseStr,
+                                                                    range: NSRange(location: 0, length: responseStr.count),
+                                                                    withTemplate: "")
+                        logger.info("HTTP Status code: \(httpResponse.statusCode) | \(logStr)")
+                    } else {
+                        logger.info("HTTP Status code: \(httpResponse.statusCode) ... ")
+                    }
+                } catch {
+                    logger.error("Error parsing response for logging")
+                }
+                #endif
+                logger.debug("------------END RESPONSE FROM SERVER------------")
+            }
+        }
+
+        if 400 ..< 600 ~= httpResponse.statusCode {
+            if httpResponse.statusCode == 404 {
+                throw APIError.notFound
+            } else {
+                let errorResponse = try JSONDecoder().decode(APIErrorResponse.self, from: data)
+                throw APIError.apiError(code: errorResponse.error.code,
+                                        reason: errorResponse.error.message)
+            }
+        }
+
         return try JSONDecoder().decode(R.self, from: data)
+    }
+}
+
+
+extension URLRequest {
+    var curlString: String {
+
+        var regex: NSRegularExpression?
+        do {
+            regex = try NSRegularExpression(pattern: RealAPIClient.logFilterRegex, options: .caseInsensitive)
+        } catch {
+            logger.error("Error parsing response for logging")
+        }
+
+        var result = ""
+
+        result += "curl -k "
+
+        if let method = httpMethod {
+            result += "-X \(method) \\\n"
+        }
+
+        #if DEBUG
+        if let headers = allHTTPHeaderFields {
+            for (header, value) in headers {
+                result += "-H \"\(header): \(value)\" \\\n"
+            }
+        }
+
+        if let body = httpBody, !body.isEmpty, let string = String(data: body, encoding: .utf8), !string.isEmpty {
+            result += "-d '\(string)' \\\n"
+        }
+        #else
+        if let regex = regex {
+            if let headers = allHTTPHeaderFields {
+                for (header, value) in headers {
+                    let headerLog = regex.stringByReplacingMatches(in: value,
+                                                                   range: NSRange(location: 0, length: value.count),
+                                                                   withTemplate: "")
+                    result += "-H \"\(header): \(headerLog)\" \\\n"
+                }
+            }
+
+            if let body = httpBody, !body.isEmpty, let string = String(data: body, encoding: .utf8), !string.isEmpty {
+                let bodyLog = regex.stringByReplacingMatches(in: string,
+                                                             range: NSRange(location: 0, length: string.count),
+                                                             withTemplate: "")
+                result += "-d '\(bodyLog)' \\\n"
+            }
+        }
+        #endif
+
+        if let url = url {
+            result += url.absoluteString
+        }
+
+        return result
     }
 }
