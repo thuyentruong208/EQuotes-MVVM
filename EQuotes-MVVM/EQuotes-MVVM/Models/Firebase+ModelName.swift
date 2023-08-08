@@ -17,9 +17,8 @@ struct DB {
     }
 
     struct Fields {
+        static let id = "id"
         static let createdAt = "createdAt"
-        static let value = "value"
-        static let quoteID = "quoteID"
     }
 }
 

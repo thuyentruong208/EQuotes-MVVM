@@ -1,0 +1,35 @@
+name: Deploy iOS to Testflight
+
+on:
+  push:
+    branches:
+      - 'releases/*'
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+
+    - name: Extract Version
+      run: |
+        branch_name="${GITHUB_REF#refs/heads/}"
+        version=$(echo "$branch_name" | sed 's/releases\///g')
+        echo "Extracted version: $version"
+        echo "VERSION=$version" >> $GITHUB_ENV
+
+    - name: Deploy to testflight
+      env:
+        APPSTORE_CERTIFICATE_P12: ${{ secrets.APPSTORE_CERTIFICATE_P12 }}
+        APPSTORE_PROVISIONING_PROFILE: ${{ secrets.APPSTORE_PROVISIONING_PROFILE }}
+        APPSTORE_CONNECT_API_KEY: ${{ secrets.APPSTORE_CONNECT_API_KEY }}
+      run: |
+          bundle install
+          bundle exec fastlane release
+
